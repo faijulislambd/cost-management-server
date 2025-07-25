@@ -66,9 +66,26 @@ const getCostsByType = async (
   }
 };
 
+const deleteCost = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    // Import ObjectId from mongodb at the top of the file if not already imported
+    const { ObjectId } = require("mongodb");
+    const result = await costServices.deleteCostFromDb(new ObjectId(id));
+    res.status(200).json({
+      success: true,
+      message: "Cost Deleted",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const CostController = {
   createCost,
   getAllCost,
   getSingleCost,
   getCostsByType,
+  deleteCost,
 };

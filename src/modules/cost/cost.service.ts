@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 import { CostModel } from "../cost.model";
 import { TCost } from "./cost.interface";
+import { CostTypeModel } from "../type.model";
 
 const createCostInDB = async (costData: TCost) => {
   const newCost = await CostModel.create(costData);
