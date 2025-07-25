@@ -1,5 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import { CostTypeRoute } from "./modules/type/type.router";
+import { CostRoute } from "./modules/cost/cost.router";
 const app = express();
 
 app.use(express.json());
@@ -9,11 +11,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-const costsRouter = express.Router();
-const costTypeRouter = express.Router();
-
-app.use("/api/v1/costs", costsRouter);
-app.use("/api/v1/types", costTypeRouter);
+app.use("/api/v1/costs", CostRoute);
+app.use("/api/v1/types", CostTypeRoute);
 
 app.post("/", (req: Request, res: Response) => {});
 

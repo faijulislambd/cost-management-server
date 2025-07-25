@@ -30,7 +30,7 @@ const deleteCostTypeFromDb = async (_id: Types.ObjectId) => {
   return result;
 };
 
-export const costServices = {
+export const costTypeServices = {
   createCostTypeInDB,
   getAllCostTypeFromDb,
   updateCostTypeInDb,
