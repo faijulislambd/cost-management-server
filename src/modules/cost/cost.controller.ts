@@ -48,4 +48,27 @@ const getSingleCost = async (
   }
 };
 
-export const CostController = { createCost, getAllCost, getSingleCost };
+const getCostsByType = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { type } = req.params;
+    const result = await costServices.getCostGroupedByType(type);
+    res.status(200).json({
+      success: true,
+      message: `Cost grouped and retrieved by type`,
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const CostController = {
+  createCost,
+  getAllCost,
+  getSingleCost,
+  getCostsByType,
+};

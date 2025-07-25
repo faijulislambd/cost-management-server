@@ -5,7 +5,7 @@ const costSchema = new Schema<TCost>(
   {
     name: { type: String, required: true },
     type: {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: "CostType",
       required: [true, "Cost Type Reference Required"],
     },

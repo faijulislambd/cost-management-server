@@ -20,7 +20,13 @@ const getCostByIdFromDb = async (_id: Types.ObjectId) => {
 const getCostGroupedByType = async (costType: string) => {
   const result = await CostModel.aggregate([
     {
-      $group: { _id: "$type", count: { $sum: 1 }, costs: { $push: "$$ROOT" } },
+      $match: {
+        type: new Types.ObjectId(costType),
+      },
+    },
+
+    {
+      $group: { _id: "$type", costs: { $push: "$$ROOT" } },
     },
   ]);
 
